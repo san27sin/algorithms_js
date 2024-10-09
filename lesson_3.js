@@ -74,11 +74,10 @@ function countTree(tree) {
     sum+= tree.name
     if (tree.children.length) {
         tree.children.forEach(tr => countTree(tr))
-        sum -= tree.name
     } else {
         results.push(sum)
-        sum -= tree.name
     }
+    sum -= tree.name
 }
 
 function findMaxNumber(array) {
