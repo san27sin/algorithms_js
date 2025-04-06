@@ -1,5 +1,3 @@
-// h/w - с отрицательными числами дерево, найти кратчайший путь
-
 function threeSum_1 (array) {
     // array.sort((a, b) => a - b) 1) зачем сортировка?
     const answer = []
@@ -51,3 +49,51 @@ function checkArray(arrayOfarray, array) {
 }
 
 console.log(threeSum_2([-1,0,1,2,-1,-4]))
+
+// правильное решение 15. 3Sum (преподавателя)
+
+function threeSum(nums) {
+    const result = [];
+    nums.sort((a, b) => a - b); // Step 1: Sort the array
+
+    for (let i = 0; i < nums.length - 2; i++) {
+        // Skip the same element to avoid duplicates
+        if (i > 0 && nums[i] === nums[i - 1]) {
+            continue;
+        }
+
+        let j = i + 1; // left pointer
+        let k = nums.length - 1; // right pointer
+
+        while (j < k) {
+            const sum = nums[i] + nums[j] + nums[k];
+
+            if (sum === 0) {
+                // Found a triplet
+                result.push([nums[i], nums[j], nums[k]]);
+
+                // Skip duplicates for the second number
+                while (j < k && nums[j] === nums[j + 1]) {
+                    j++;
+                }
+
+                // Skip duplicates for the third number
+                while (j < k && nums[k] === nums[k - 1]) {
+                    k--;
+                }
+
+                // Move both pointers after finding a valid triplet
+                j++;
+                k--;
+            } else if (sum < 0) {
+                // Sum is less than zero, move the left pointer to the right
+                j++;
+            } else {
+                // Sum is greater than zero, move the right pointer to the left
+                k--;
+            }
+        }
+    }
+
+    return result;
+}

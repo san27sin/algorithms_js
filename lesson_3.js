@@ -1,35 +1,35 @@
-// const functions = [
-//     () => new Promise(resolve => setTimeout(() => resolve(5), 200))
-// ]
-//
-// var promiseAll = function(functions) {
-//     return new Promise((resolve, reject) => {
-//         let hasRejected = false
-//         let date = Date.now()
-//         const obj = {}
-//
-//
-//         functions.forEach((fun) => {
-//             if (hasRejected) { return }
-//             obj.resolved = []
-//             fun()
-//                 .then(value => {
-//                     obj.t = Date.now() - date
-//                     obj.resolved.push(value)
-//                     resolve(obj)
-//                 })
-//                 .catch(error => {
-//                     hasRejected = true
-//                     obj.t = Date.now() - date
-//                     delete obj.resolved
-//                     obj.rejected = 'Error'
-//                     reject(obj)
-//                 })
-//         })
-//     })
-// };
-//
-// promiseAll(functions).then(answer => console.log(answer)).catch(err => console.log(err))
+const functions = [
+    () => new Promise(resolve => setTimeout(() => resolve(5), 200))
+]
+
+var promiseAll = function(functions) {
+    return new Promise((resolve, reject) => {
+        let hasRejected = false
+        let date = Date.now()
+        const obj = {}
+
+
+        functions.forEach((fun) => {
+            if (hasRejected) { return }
+            obj.resolved = []
+            fun()
+                .then(value => {
+                    obj.t = Date.now() - date
+                    obj.resolved.push(value)
+                    resolve(obj)
+                })
+                .catch(error => {
+                    hasRejected = true
+                    obj.t = Date.now() - date
+                    delete obj.resolved
+                    obj.rejected = 'Error'
+                    reject(obj)
+                })
+        })
+    })
+};
+
+promiseAll(functions).then(answer => console.log(answer)).catch(err => console.log(err))
 
 // Есть дерево, в нем 10 вершин. Первая вершина - 1. Найти максимальную сумму по проходу дерева, решение через рекурсию.
 
